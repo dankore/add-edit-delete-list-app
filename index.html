@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Catching input values</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="user-scalable=no" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-blue-400 ">
+    <div class="w-full md:w-2/4 mx-3 mx-auto">
+      <h1 class="text-center text-white my-3 font-semi-bold text-3xl">
+        List App
+      </h1>
+      <div class="mx-5 m-auto">
+        <form class="border-8 bg-white rounded flex justify-around">
+          <input
+            id="input"
+            class="w-full border-gray-400 p-3"
+            type="text"
+            autocomplete="off"
+          />
+          <button id="submit" class="bg-green-500 shadow-lg px-5 p-3">
+            Send
+          </button>
+        </form>
+        <ul class="receiver rounded w-full p-3 mt-5 bg-white"></ul>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
