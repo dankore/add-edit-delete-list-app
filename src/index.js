@@ -42,7 +42,6 @@ document.addEventListener("click", e => {
     if (index > -1) {
       array.splice(index, 1);
     }
-    console.log(e.target.parentNode.parentNode.parentNode);
     // e.target.parentNode.parentNode.parentNode ==> Gives UL tag
     // e.target.parentNode.parentNode.parentNode.firstChild ==> Gives whole div
 
