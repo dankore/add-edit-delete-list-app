@@ -22,7 +22,10 @@ function addToList(data) {
     .map(item => {
       return `<div id="list" class="flex items-center border-b-2 justify-between mb-2">
       <li>${item}</li>
-      <button class="delete-me rounded text-white font-bold px-3 py-2 hover:bg-red-400 bg-red-600">DELETE</button>
+      <div class="font-bold">
+      <button class="text-white rounded px-3 py-2 bg-gray-900 hover:bg-gray-600">EDIT</button>
+      <button class="delete-me rounded px-3 py-2 text-white hover:bg-red-400 bg-red-600">DELETE</button>
+      </div>
       </div>`;
     })
     .join("");
@@ -32,14 +35,19 @@ function addToList(data) {
 
 document.addEventListener("click", e => {
   if (e.target.classList.contains("delete-me")) {
-    let item = e.target.parentNode.firstChild.innerHTML;
+    let item = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
+    // console.log(item);
     let index = array.indexOf(item);
     // Remove specific array
     if (index > -1) {
       array.splice(index, 1);
     }
-    console.log(array);
+    console.log(e.target.parentNode.parentNode.parentNode);
+    // e.target.parentNode.parentNode.parentNode ==> Gives UL tag
+    // e.target.parentNode.parentNode.parentNode.firstChild ==> Gives whole div
 
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    e.target.parentNode.parentNode.parentNode.removeChild(
+      e.target.parentNode.parentNode.parentNode.firstChild
+    );
   }
 });
