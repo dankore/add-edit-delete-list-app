@@ -4,11 +4,11 @@ const receiver = document.querySelector(".receiver");
 const array = [];
 
 document.addEventListener("click", e => {
-  let text = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
-  let index = array.indexOf(text);
-
   //Edit item
   if (e.target.classList.contains("edit-me")) {
+    let text = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
+    let index = array.indexOf(text);
+
     //Get prompt value
     let userInput = prompt(
       "Edit Your Item",
@@ -22,15 +22,14 @@ document.addEventListener("click", e => {
   }
   // Delete item
   if (e.target.classList.contains("delete-me")) {
-    // Remove specific array
-    if (index > -1) {
-      array.splice(index, 1);
-    }
-    // e.target.parentNode.parentNode.parentNode ==> Gives <ul> tag
-    // e.target.parentNode.parentNode.parentNode.firstChild ==> Gives whole <div>
     e.target.parentNode.parentNode.parentNode.removeChild(
-      e.target.parentNode.parentNode.parentNode.firstChild
+      e.target.parentNode.parentNode
     );
+    let textToDelete =
+      e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
+    let indexToDelete = array.indexOf(textToDelete);
+
+    array.splice(indexToDelete, 1);
   }
 });
 
@@ -46,11 +45,12 @@ function addToList(e) {
 
   receiver.innerHTML = array
     .map(item => {
-      return `<div id="list" class="flex items-center border-b-2 justify-between mb-2">
-      <li>${item}</li>
+      return `<div id="list" class="flex pl-2 pt-3 border-gray-200 border-b items-center justify-between ">
+
+      <li class="text-xl">${item}</li>
       <div class="font-bold">
-      <button class="edit-me text-white rounded px-3 py-2 bg-gray-900 hover:bg-gray-600">EDIT</button>
-      <button class="delete-me rounded px-3 py-2 text-white hover:bg-red-400 bg-red-600">DELETE</button>
+      <button class="edit-me px-2 text-white rounded bg-gray-900 hover:bg-gray-600">EDIT</button>
+      <button class="delete-me px-2 rounded  text-white hover:bg-red-400 bg-red-600">DELETE</button>
       </div>
       </div>`;
     })
