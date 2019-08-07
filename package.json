@@ -1,7 +1,7 @@
 {
-  "name": "parcel-sandbox",
+  "name": "list-app",
   "version": "1.0.0",
-  "description": "Simple Parcel Sandbox",
+  "description": "Add, Edit, and Delete App",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",

@@ -3,21 +3,47 @@ const receiver = document.querySelector(".receiver");
 
 const array = [];
 
-const add = e => {
-  e.preventDefault();
+document.addEventListener("click", e => {
+  let text = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
+  let index = array.indexOf(text);
 
+  //Edit item
+  if (e.target.classList.contains("edit-me")) {
+    //Get prompt value
+    let userInput = prompt(
+      "Edit Your Item",
+      e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML
+    );
+    //The beginning if statement tells the browser to only return if the user inputs info into the text box
+    if (userInput) {
+      array.splice(index, 1, userInput);
+      e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML = userInput;
+    }
+  }
+  // Delete item
+  if (e.target.classList.contains("delete-me")) {
+    // Remove specific array
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+    // e.target.parentNode.parentNode.parentNode ==> Gives <ul> tag
+    // e.target.parentNode.parentNode.parentNode.firstChild ==> Gives whole <div>
+    e.target.parentNode.parentNode.parentNode.removeChild(
+      e.target.parentNode.parentNode.parentNode.firstChild
+    );
+  }
+});
+
+function addToList(e) {
+  e.preventDefault();
+  // Get input value
   const text = document.querySelector("#input").value;
 
   //Add items to array
   if (text) {
     array.push(text);
   }
-  addToList(array);
-};
 
-submitButton.addEventListener("click", add);
-
-function addToList(data) {
   receiver.innerHTML = array
     .map(item => {
       return `<div id="list" class="flex items-center border-b-2 justify-between mb-2">
@@ -32,38 +58,4 @@ function addToList(data) {
   document.querySelector("#input").value = "";
   document.querySelector("#input").focus();
 }
-
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("delete-me")) {
-    let text = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
-    // console.log(item);
-    let index = array.indexOf(text);
-    // Remove specific array
-    if (index > -1) {
-      array.splice(index, 1);
-    }
-    // e.target.parentNode.parentNode.parentNode ==> Gives UL tag
-    // e.target.parentNode.parentNode.parentNode.firstChild ==> Gives whole div
-
-    e.target.parentNode.parentNode.parentNode.removeChild(
-      e.target.parentNode.parentNode.parentNode.firstChild
-    );
-  }
-});
-
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("edit-me")) {
-    let text = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
-    let index = array.indexOf(text);
-    //Get prompt value
-    let userInput = prompt(
-      "Edit your input",
-      e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML
-    );
-    //The beginning if statement tells the browser to only return if the user inputs info into the text box
-    if (userInput) {
-      array.splice(index, 1, userInput);
-      e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML = userInput;
-    }
-  }
-});
+submitButton.addEventListener("click", addToList);
