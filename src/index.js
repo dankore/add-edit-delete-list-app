@@ -6,8 +6,9 @@ const array = [];
 document.addEventListener("click", e => {
   //Edit item
   if (e.target.classList.contains("edit-me")) {
-    let text = e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
-    let index = array.indexOf(text);
+    let textToEdit =
+      e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML;
+    let indexToEdit = array.indexOf(textToEdit);
 
     //Get prompt value
     let userInput = prompt(
@@ -16,7 +17,7 @@ document.addEventListener("click", e => {
     );
     //The beginning if statement tells the browser to only return if the user inputs info into the text box
     if (userInput) {
-      array.splice(index, 1, userInput);
+      array.splice(indexToEdit, 1, userInput);
       e.target.parentNode.parentNode.firstChild.nextSibling.innerHTML = userInput;
     }
   }
