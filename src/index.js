@@ -31,6 +31,15 @@ document.addEventListener("click", e => {
     let indexToDelete = array.indexOf(textToDelete);
 
     array.splice(indexToDelete, 1);
+
+    //Delete from storage
+    // const fromLocalStorage = JSON.parse(localStorage.getItem("items"));
+    // fromLocalStorage.forEach(anItem => {
+    //   let anItemIndex = fromLocalStorage.indexOf(anItem);
+    //   fromLocalStorage.splice(anItemIndex, 1);
+    //   localStorage.setItem("items", JSON.stringify(fromLocalStorage));
+    // });
+    // console.log(fromLocalStorage);
   }
 });
 
@@ -42,6 +51,7 @@ function addToList(e) {
   //Add items to array
   if (text) {
     array.push(text);
+    // localStorage.setItem("items", JSON.stringify(array));
   }
 
   receiver.innerHTML = array
